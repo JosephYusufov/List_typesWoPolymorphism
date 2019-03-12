@@ -26,10 +26,10 @@ public class List_inArraySlots {
       Construct an empty list with a small initial capacity.
      */
     public List_inArraySlots() {
-        intElements = int[INITIAL_CAPACITY];
-        doubleElements = double[INITIAL_CAPACITY];
-        stringElements = String[INITIAL_CAPACITY];
-        typeOfElements = int[INITIAL_CAPACITY];
+        intElements = new int[INITIAL_CAPACITY];
+        doubleElements = new double[INITIAL_CAPACITY];
+        stringElements = new String[INITIAL_CAPACITY];
+        typeOfElements = new int[INITIAL_CAPACITY];
     }
 
 
@@ -46,14 +46,16 @@ public class List_inArraySlots {
        in [a,b,c,] format
       */
     public String toString() {
-        String toReturn = "\n";
+        String toReturn = "\n\t[\n";
         for (int index = 0; index < filledElements ; index ++) {
-            toReturn += "\t"
+            toReturn += "\t";
             if (typeOfElements[index] == 0) toReturn += intElements[index];
             if (typeOfElements[index] == 1) toReturn += doubleElements[index];
             if (typeOfElements[index] == 2) toReturn += stringElements[index];
-            toReturn += "\n"
+            toReturn += "\n";
         }
+        toReturn += "\t]";
+        return toReturn;
     }
 
 
@@ -85,10 +87,10 @@ public class List_inArraySlots {
       preserving existing data.
      */
     private void expand() {
-        int[] bigIntElements = new int[intElements.length * 2]
-        int[] bigDoubleElements = new double[doubleElements.length * 2]
-        int[] bigStringElements = new String[stringElements.length * 2]
-        int[] bigTypeOfElements = new int[typeOfElements.length * 2]
+        int[] bigIntElements = new int[intElements.length * 2];
+        double[] bigDoubleElements = new double[doubleElements.length * 2];
+        String[] bigStringElements = new String[stringElements.length * 2];
+        int[] bigTypeOfElements = new int[typeOfElements.length * 2];
 
         for (int index = 0; index < filledElements; index++) { //copy each element of the old array into the corresponding
             bigIntElements[index] = intElements[index];
@@ -102,7 +104,6 @@ public class List_inArraySlots {
         stringElements = bigStringElements;
         typeOfElements = bigTypeOfElements;
     }
-
         // System.out.println( "expand... (for debugging)");
            // /* S.O.P. rules for debugging:
               // Working methods should be silent. But during
@@ -110,5 +111,4 @@ public class List_inArraySlots {
               // this method is called when that is appropriate.
               // So test using the println(), then comment it out.
               // */
-     }
 }
